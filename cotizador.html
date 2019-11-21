@@ -57,10 +57,10 @@
                         <a class="nav-link" href="/cotizador.html">Cotizador</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#logInModal">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modalSignUp">Sign Up</a>
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" id="logOut">LogOut</a>
@@ -75,7 +75,7 @@
     <!-- #header -->
 
     <!-- SIGN UP MODAL -->
-    <div class="modal" id="modalSignUp">
+    <div class="modal" id="signUpModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -89,19 +89,19 @@
                     <form id="signUpForm" >
                         <div class="form-group">
                             <label for="name">👤Nombre y Apellido</label>
-                            <input type="text" class="form-control" id="name" placeholder="Fulanito Perez">
+                            <input type="text" class="form-control" id="name-register" placeholder="Fulanito Perez">
                         </div>
                         <div class="form-group">
                             <label for="phone">📞Teléfono</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="+(52) 3173851431">
+                            <input type="tel" class="form-control" id="phone-register" placeholder="+(52) 3173851431">
                         </div>
                         <div class="form-group">
                             <label for="email">📧Correo</label>
-                            <input type="email" class="form-control" id="email" placeholder="fulanitoperez@mmail.com">
+                            <input type="email" class="form-control" id="email-register" placeholder="fulanitoperez@mmail.com">
                         </div>
                         <div class="form-group">
                                 <label for="password">🔑Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="********">
+                                <input type="password" class="form-control" id="password-register" placeholder="********">
                         </div>
 
                         <!-- Modal footer -->
@@ -117,27 +117,37 @@
 
 
       <!-- LOGIN MODAL -->
-    <div class="modal" id="loginModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
-                </div>
-        
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <div class="modal" id="logInModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Iniciar Sesión</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form id="logInForm" >
+                            <div class="form-group">
+                                <label for="email">📧Correo</label>
+                                <input type="email" class="form-control" id="email-logIn" placeholder="fulanitoperez@mmail.com">
+                            </div>
+                            <div class="form-group">
+                                    <label for="password">🔑Contraseña</label>
+                                    <input type="password" class="form-control" id="password-logIn" placeholder="********">
+                            </div>
+    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
   <br>
