@@ -9,6 +9,29 @@ auth.onAuthStateChanged(user => {
     }
 })
 
+
+const cotizacionForm = document.querySelector('#cotizadorForm');
+cotizacionForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    db.collection('cotizaciones').add({
+        material: cotizacionForm['materialFormControSelect'].value,
+        largo: cotizacionForm['large-dimention'].value,
+        ancho: cotizacionForm['width-dimention'].value,
+        alto: cotizacionForm['height-dimention'].value,
+        // missing logo upload
+        cantidad: cotizacionForm['amount'].value,
+        logoPath: cotizacionForm['file-selector'].value
+    }).then(() => {
+        cotizacionForm.reset();
+        console.log('cotizacion enviada con exito');
+    }).catch(err => {
+        console.log(err.message);
+    })
+})
+
+
+
 // sign up
 const signUpForm = document.querySelector('#signUpForm');
 signUpForm.addEventListener('submit', (e) => {
