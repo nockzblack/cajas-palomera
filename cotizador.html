@@ -149,17 +149,63 @@
             </div>
         </div>
 
+    <section>
+        <div class="" id="signUpModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cotiza tu caja 📦</h4>
+                    </div>
+                        
+                    <!-- Modal body -->
+                    <div class="modal-body"> 
+                        <form id="cotizadorForm" >
+                            <div class="form-group">
+                                <label for="materialFormControSelect">♺ Material</label>
+                                <select class="form-control" id="materialFormControSelect">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <label for="dimentions">📐Medidas (cm)</label>
+                            <div class="form-row form-group">   
+                                <div class="col">
+                                    <input type="number" class="form-control" id="large-dimention" placeholder="largo">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="width-dimention" placeholder="ancho">
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="height-dimention" placeholder="alto">
+                                </div>
+                            </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+                            <label for="dimentions">🌠Logo (.png)</label> 
+                            <div class="custom-file form-group py-4">
+                                <input type="file" class="custom-file-input" id="file-selector">
+                                <label class="custom-file-label" for="customFile"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">🔢Cantidad</label>
+                                <input type="number" class="form-control" id="amount" placeholder="100">
+                            </div>
+            
+                                <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Limpiar</button>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
   
   <!--==========================
     Footer
