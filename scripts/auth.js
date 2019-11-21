@@ -40,10 +40,18 @@ signUpForm.addEventListener('submit', (e) => {
     // get user info
     const email = signUpForm['email-register'].value;
     const password = signUpForm['password-register'].value;
+    const name = signUpForm['name-register'].value;
+    const phone = signUpForm['phone-register'].value;
     //console.log(email,password);
 
     // sign up the user
     auth.createUserWithEmailAndPassword(email,password).then(cred => {
+        return db.collection('users').doc(cred.user.uid).set({
+            nombre: name,
+            telefono: phone,
+            email:  email
+        });
+    }).then(() =>{
         //console.log(cred);
         // closing modal
         $('#signUpModal').modal('hide');
