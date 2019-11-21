@@ -1,6 +1,12 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
-     
+    if (user) {
+        console.log('user logged in: ', user);
+        setupUI(user);
+    } else  {
+        console.log('user logged out');
+        setupUI(user);
+    }
 })
 
 // sign up
@@ -11,11 +17,11 @@ signUpForm.addEventListener('submit', (e) => {
     // get user info
     const email = signUpForm['email-register'].value;
     const password = signUpForm['password-register'].value;
-    console.log(email,password);
+    //console.log(email,password);
 
     // sign up the user
     auth.createUserWithEmailAndPassword(email,password).then(cred => {
-        console.log(cred);
+        //console.log(cred);
         // closing modal
         $('#signUpModal').modal('hide');
         signUpForm.reset();
@@ -27,9 +33,7 @@ const logOut = document.querySelector('#logOut');
 
 logOut.addEventListener('click', (e) => {
     e.preventDefault();
-    auth.signOut().then( () => {
-        console.log('user signedOut');
-    })
+    auth.signOut();
 })
 
 
