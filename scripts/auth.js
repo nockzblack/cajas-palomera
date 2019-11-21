@@ -1,8 +1,10 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
+        // account info         
         console.log('user logged in: ', user);
         setupUI(user);
+
     } else  {
         console.log('user logged out');
         setupUI(user);
@@ -13,8 +15,8 @@ auth.onAuthStateChanged(user => {
 const cotizacionForm = document.querySelector('#cotizadorForm');
 cotizacionForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    db.collection('cotizaciones').add({
+    var user = firebase.auth().currentUser;
+    db.collection('cotizaciones').doc(user.uid).set({
         material: cotizacionForm['materialFormControSelect'].value,
         largo: cotizacionForm['large-dimention'].value,
         ancho: cotizacionForm['width-dimention'].value,

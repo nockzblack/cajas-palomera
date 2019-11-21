@@ -1,6 +1,7 @@
 // DOM elements
 const guideList = document.querySelector('.guides');
 
+
 // setup guides
 const setupGuides = (data) => {
 
@@ -18,6 +19,7 @@ const setupGuides = (data) => {
     });
     guideList.innerHTML = html
   } else {
+
     guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>';
   }
   
@@ -28,16 +30,25 @@ const setupGuides = (data) => {
 // DOM elements
 const loggedOutLinks = document.querySelectorAll('.loggedOut');
 const loggedInLinks = document.querySelectorAll('.loggedIn');
-
+const accountDetails = document.querySelector('.accountDetails');
 
 const setupUI = (user) => {
     if (user) {
+        db.collection('users').doc(user.uid).get().then(doc => {
+            const html = `
+              <div>Logged in as ${user.email}</div>
+              <div>${doc.data().nombre}</div>
+              <div>${doc.data().telefono}</div>
+            `;
+            accountDetails.innerHTML = html;
+        });
       // toggle user UI elements
       loggedInLinks.forEach(item => item.style.display = 'block');
       loggedOutLinks.forEach(item => item.style.display = 'none');
     } else {
-      // toggle user elements
-      loggedInLinks.forEach(item => item.style.display = 'none');
-      loggedOutLinks.forEach(item => item.style.display = 'block');
+        accountDetails.innerHTML = '';
+        // toggle user elements
+        loggedInLinks.forEach(item => item.style.display = 'none');
+        loggedOutLinks.forEach(item => item.style.display = 'block');
     }
   };
