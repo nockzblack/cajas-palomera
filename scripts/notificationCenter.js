@@ -30,7 +30,7 @@ class NotificationCenter {
                 Http.onreadystatechange = (e) => {
                     console.log(Http.responseText)
                 }
-                console.log('cotizacion a ventas enviada');
+                //console.log('cotizacion a ventas enviada');
                 this.sendCotizacionCliente(email, coti);
             });   
         }
@@ -53,5 +53,7 @@ class NotificationCenter {
             console.log(Http.responseText)
         }
         console.log('cotizacion copia a cliente enviada');
+        const str = 'cotizacion enviada correctamente, se ha enviado una copia al correo: ' + email;
+        alert(str);
     }
 }
