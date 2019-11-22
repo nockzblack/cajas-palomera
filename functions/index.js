@@ -26,9 +26,9 @@ exports.sendMail = functions.https.onRequest((req, res) => {
         const message = req.query.message;
 
         const mailOptions = {
-            from: 'Your Account Name <yourgmailaccount@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
+            from: 'Cajas Palomera', // Something like: Jane Doe <janedoe@gmail.com>
             to: dest,
-            subject: 'I\'M A PICKLE!!!', // email subject
+            subject: 'Cotización Cajas Palomera', // email subject
             html: message
         };
   
