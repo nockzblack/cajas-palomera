@@ -9,7 +9,7 @@ class Cotizacion {
     }
 
     realizarCotizacion() {
-        db.collection('cotizaciones').doc(this.user.uid).set({
+        db.collection('cotizaciones').doc(this.user.uid).collection('lista').add({
             material: this.material,
             largo: this.medidas.largo,
             ancho: this.medidas.ancho,
