@@ -37,6 +37,9 @@ signUpForm.addEventListener('submit', (e) => {
         // closing modal
         $('#signUpModal').modal('hide');
         signUpForm.reset();
+    }).catch(err => {
+        console.log(err.message);
+        alert(err.message);
     })
 });
 
@@ -63,6 +66,9 @@ loginForm.addEventListener('submit', (e) => {
         // closing modal
         $('#logInModal').modal('hide');
         loginForm.reset();
+    }).catch(err => {
+        console.log(err.message);
+        alert(err.message);
     })
 })
 
