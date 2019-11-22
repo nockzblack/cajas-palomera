@@ -1,4 +1,5 @@
 // listen for auth status changes
+// userChangedStatus(User)
 auth.onAuthStateChanged(user => {
     if (user) {
         // account info         
@@ -10,28 +11,6 @@ auth.onAuthStateChanged(user => {
         setupUI(user);
     }
 })
-
-
-const cotizacionForm = document.querySelector('#cotizadorForm');
-cotizacionForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    var user = firebase.auth().currentUser;
-    db.collection('cotizaciones').doc(user.uid).set({
-        material: cotizacionForm['materialFormControSelect'].value,
-        largo: cotizacionForm['large-dimention'].value,
-        ancho: cotizacionForm['width-dimention'].value,
-        alto: cotizacionForm['height-dimention'].value,
-        // missing logo upload
-        cantidad: cotizacionForm['amount'].value,
-        logoPath: cotizacionForm['file-selector'].value
-    }).then(() => {
-        cotizacionForm.reset();
-        console.log('cotizacion enviada con exito');
-    }).catch(err => {
-        console.log(err.message);
-    })
-})
-
 
 
 // sign up
@@ -63,7 +42,6 @@ signUpForm.addEventListener('submit', (e) => {
 
 //log Out
 const logOut = document.querySelector('#logOut');
-
 logOut.addEventListener('click', (e) => {
     e.preventDefault();
     auth.signOut();
@@ -87,3 +65,7 @@ loginForm.addEventListener('submit', (e) => {
         loginForm.reset();
     })
 })
+
+
+
+

@@ -1,44 +1,57 @@
-
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const nodemailer = require('nodemailer');
-const cors = require('cors')({origin: true});
-admin.initializeApp();
-
-/**
-* Here we're using Gmail to send 
-*/
-let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'nockzblack@gmail.com',
-        pass: 'livingTec'
+// Initializing a class definition
+class NotificationCenter {
+    constructor(email) {
+        this.emailEmpresa = email;
     }
-});
 
-exports.sendMail = functions.https.onRequest((req, res) => {
-    cors(req, res, () => {
-      
-        // getting dest email by query string
-        const dest = req.query.dest;
 
-        const mailOptions = {
-            from: 'Your Account Name <yourgmailaccount@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
-            to: dest,
-            subject: 'I\'M A PICKLE!!!', // email subject
-            html: `<p style="font-size: 16px;">Pickle Riiiiiiiiiiiiiiiick!!</p>
-                <br />
-                <img src="https://images.prod.meredith.com/product/fc8754735c8a9b4aebb786278e7265a5/1538025388228/l/rick-and-morty-pickle-rick-sticker" />
-            ` // email content in HTML
-        };
-  
-        // returning result
-        return transporter.sendMail(mailOptions, (erro, info) => {
-            if(erro){
-                return res.send(erro.toString());
-            }
-            return res.send('Sended');
-        });
-    });    
-});
+    // Adding a method to the constructor
+    sendCotizacionVentas(user, coti) {
+        if (user) {
+            let email;
+            let name;
+            let phone;
+            db.collection('users').doc(user.uid).get().then(doc => {
+                email = doc.data().email;
+                name = doc.data().nombre;
+                phone = doc.data().telefono;
+                
+            }).then(() => {
+                const html = `<h2> Nueva Cotización <h2><h3> El usuario:${email} </h3><h3> con el nombre: ${name}</h3><h3> y telefono: ${phone}</h3><p>Requiere la cotización de una caja con las especificaciones</p><p>Material: ${coti.material}</p><p>Medidas</p><p>    -largo: ${coti.medidas.largo} cm</p><p>  -ancho: ${coti.medidas.ancho} cm</p><p>    -alto: ${coti.medidas.alto} cm</p><p>Cantidad: ${coti.cantidad}</p><p>Imagen </p><img src="${coti.urlImagen}" width="300"/><p>Saludos Firebase 🤖</p>`;
 
+                const Http = new XMLHttpRequest();
+                const url='https://us-central1-cajas-palomera.cloudfunctions.net/sendMail?dest='+ this.emailEmpresa;
+                const htmlEncode = encodeURIComponent(html);
+                //console.log(html);
+            
+                const finalURL = url + '&' + 'message='+htmlEncode;
+                Http.open("GET", finalURL);
+                Http.send();
+                Http.onreadystatechange = (e) => {
+                    console.log(Http.responseText)
+                }
+                console.log('cotizacion a ventas enviada');
+                this.sendCotizacionCliente(email, coti);
+            });   
+        }
+        
+        
+    }
+
+    sendCotizacionCliente(email, coti) {
+        const html = `<h2> Copia de Cotización<h2><p>Requiere la cotización de una caja con las especificaciones</p><p>Material: ${coti.material}</p><p>Medidas</p><p>    -largo: ${coti.medidas.largo} cm</p><p>  -ancho: ${coti.medidas.ancho} cm</p><p>    -alto: ${coti.medidas.alto} cm</p><p>Cantidad: ${coti.cantidad}</p><p>Imagen </p><img src="${coti.urlImagen}" width="300"/><p>Saludos Firebase 🤖</p>`;
+        //console.log(email);
+        const Http = new XMLHttpRequest();
+        const url='https://us-central1-cajas-palomera.cloudfunctions.net/sendMail?dest='+ email;
+        const htmlEncode = encodeURIComponent(html);
+        //console.log(html);
+            
+        const finalURL = url + '&' + 'message='+htmlEncode;
+        Http.open("GET", finalURL);
+        Http.send();
+        Http.onreadystatechange = (e) => {
+            console.log(Http.responseText)
+        }
+        console.log('cotizacion copia a cliente enviada');
+    }
+}
